@@ -25,7 +25,7 @@ pipeline {
                                      usernameVariable: 'DOCKER_USER')]) {
                         
                         //Đăng nhập Docker Hub
-                        sh "echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin"
+                        sh 'echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin'
                         
                         //Build 1 image duy nhất chứa toàn bộ 19 file JAR
                         sh "docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${COMMIT_ID} ."
