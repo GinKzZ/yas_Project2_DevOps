@@ -1,0 +1,12 @@
+backend:
+  image:
+    repository: 23127206/yas-all-in-one
+    tag: latest
+    pullPolicy: Always
+
+  nameOverride: delivery
+  fullnameOverride: delivery
+  databaseName: delivery
+  
+  ingress:
+    enabled: false
