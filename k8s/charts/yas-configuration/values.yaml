@@ -14,7 +14,7 @@ credentials:
   openai:
     apiKey: "update-me"
 
-# QUAN TRỌNG: Phải có dấu | để biến cụm phía dưới thành 1 String
+# CỰC KỲ QUAN TRỌNG: Phải có dấu | ở đây
 applicationConfig: |
   server:
     shutdown: "graceful"
@@ -45,7 +45,6 @@ applicationConfig: |
       password: "${POSTGRESQL_PASSWORD}"
     kafka:
       bootstrap-servers: "kafka-cluster-kafka-brokers.kafka:9092"
-
   yas:
     services:
       cart: "http://cart/cart"
@@ -63,17 +62,7 @@ applicationConfig: |
       delivery: "http://delivery/delivery"
       webhook: "http://webhook/webhook"
 
-# Các cấu hình khác cũng cần dấu | nếu chart yêu cầu tpl
-gatewayRoutesConfig: |
-  spring:
-    cloud:
-      gateway:
-        routes:
-          - id: product_api
-            uri: "http://product"
-            predicates:
-              - Path=/api/product/**
-
+# Cấu hình Sample Data cũng cần dấu |
 sampledataApplicationConfig: |
   spring:
     datasource:
@@ -82,6 +71,7 @@ sampledataApplicationConfig: |
       media:
         url: "jdbc:postgresql://postgres-postgresql:5432/media"
 
+# Giữ nguyên cấu hình reloader
 reloader:
   nameOverride: "yas-reloader"
   fullnameOverride: "yas-reloader"
