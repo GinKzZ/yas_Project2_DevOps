@@ -14,15 +14,12 @@ credentials:
   openai:
     apiKey: "update-me"
 
-# CỰC KỲ QUAN TRỌNG: Phải có dấu | ở đây
-applicationConfig: |
+# ĐỂ DẠNG MAP (KHÔNG CÓ DẤU |) - Vì template dùng toYaml
+applicationConfig:
   server:
     shutdown: "graceful"
     port: "80"
   management:
-    otlp:
-      tracing:
-        endpoint: "http://opentelemetry-collector.observability:4318/v1/traces"
     server:
       port: "8090"
     health:
@@ -30,9 +27,6 @@ applicationConfig: |
         enabled: "true"
       livenessstate:
         enabled: "true"
-    tracing:
-      sampling:
-        probability: "1.0"
   spring:
     security:
       oauth2:
@@ -53,25 +47,38 @@ applicationConfig: |
       location: "http://location/location"
       media: "http://media/media"
       order: "http://order/order"
-      payment: "http://payment/payment"
       product: "http://product/product"
-      promotion: "http://promotion/promotion"
-      rating: "http://rating/rating"
-      search: "http://search/search"
-      tax: "http://tax/tax"
-      delivery: "http://delivery/delivery"
-      webhook: "http://webhook/webhook"
+      recommendation: "http://recommendation/recommendation"
 
-# Cấu hình Sample Data cũng cần dấu |
-sampledataApplicationConfig: |
+# BẮT BUỘC PHẢI CÓ DẤU | - Vì template dùng trực tiếp (không qua toYaml)
+logbackConfig: |
+  <?xml version="1.0" encoding="UTF-8" ?>
+  <Configuration>
+    <root level="INFO">
+      <appender-ref ref="CONSOLE" />
+    </root>
+  </Configuration>
+
+# Bổ sung các Map còn thiếu để template không bị null
+gatewayRoutesConfig:
   spring:
-    datasource:
-      product:
-        url: "jdbc:postgresql://postgres-postgresql:5432/product"
-      media:
-        url: "jdbc:postgresql://postgres-postgresql:5432/media"
+    cloud:
+      gateway:
+        routes: []
 
-# Giữ nguyên cấu hình reloader
+backofficeBffExtraConfig: {}
+storefrontBffExtraConfig: {}
+mediaApplicationConfig: {}
+customerApplicationConfig: {}
+searchApplicationConfig: {}
+cartApplicationConfig: {}
+orderApplicationConfig: {}
+paymentApplicationConfig: {}
+paymentPaypalApplicationConfig: {}
+productApplicationConfig: {}
+recommendationApplicationConfig: {}
+sampledataApplicationConfig: {}
+
 reloader:
   nameOverride: "yas-reloader"
   fullnameOverride: "yas-reloader"
