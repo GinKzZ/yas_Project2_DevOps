@@ -1,8 +1,13 @@
 backend:
   image:
-    repository: ghcr.io/nashtech-garage/yas-webhook
+    repository: 23127206/yas-all-in-one
     tag: latest
+    pullPolicy: Always
 
   nameOverride: webhook
   fullnameOverride: webhook
+  
   databaseName: webhook
+  
+  ingress:
+    enabled: false

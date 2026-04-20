@@ -1,16 +1,21 @@
 backend:
   image:
-    repository: ghcr.io/nashtech-garage/yas-recommendation
+    repository: 23127206/yas-all-in-one
     tag: latest
+    pullPolicy: Always
 
   nameOverride: recommendation
   fullnameOverride: recommendation
+  
   databaseName: recommendation
+  
   ingress:
     enabled: false
+
   extraEnvFroms:
     - secretRef:
         name: yas-openai-api-key-secret
+
   extraVolumes:
     - name: recommendation-application
       configMap:

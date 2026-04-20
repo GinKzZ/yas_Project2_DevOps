@@ -1,13 +1,17 @@
 backend:
   image:
-    repository: ghcr.io/nashtech-garage/yas-product
+    repository: 23127206/yas-all-in-one
     tag: latest
+    pullPolicy: Always
 
   nameOverride: product
   fullnameOverride: product
+  
   databaseName: product
+  
   ingress:
     enabled: false
+
   extraVolumes:
     - name: product-application-config
       configMap:
@@ -16,4 +20,4 @@ backend:
     - name: product-application-config
       mountPath: /opt/yas/product
   extraApplicationConfigPaths:
-    - /opt/yas/product/product-application.yaml  
+    - /opt/yas/product/product-application.yaml

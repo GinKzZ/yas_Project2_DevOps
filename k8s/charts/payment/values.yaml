@@ -1,13 +1,17 @@
 backend:
   image:
-    repository: ghcr.io/nashtech-garage/yas-payment
+    repository: 23127206/yas-all-in-one
     tag: latest
+    pullPolicy: Always
 
   nameOverride: payment
   fullnameOverride: payment
+  
   databaseName: payment
+  
   ingress:
     enabled: false
+
   extraVolumes:
     - name: payment-application-config
       configMap:

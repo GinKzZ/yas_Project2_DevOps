@@ -44,6 +44,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          command: {{ .Values.image.command | default (list "java" "-jar" (printf "/app/libs/%s.jar" (.Values.nameOverride | default .Chart.Name))) | toJson }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - secretRef:
@@ -74,10 +75,10 @@ spec:
             {{- end }}
           ports:
             - name: http
-              containerPort: {{ .Values.httpPort }}
+              container_port: {{ .Values.httpPort }}
               protocol: TCP
             - name: metric
-              containerPort: {{ .Values.metricPort }}
+              container_port: {{ .Values.metricPort }}
           lifecycle:
             {{ toYaml .Values.lifecycle | nindent 12 }}
           livenessProbe:
