@@ -2,7 +2,7 @@ ui:
   image:
     repository: 23127206/yas-storefront-ui 
     tag: latest
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
 
   nameOverride: storefront-ui
   fullnameOverride: storefront-ui
