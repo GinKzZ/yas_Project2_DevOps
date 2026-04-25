@@ -75,10 +75,10 @@ spec:
             {{- end }}
           ports:
             - name: http
-              container_port: {{ .Values.httpPort }}
+              containerPort: {{ .Values.httpPort }}
               protocol: TCP
             - name: metric
-              container_port: {{ .Values.metricPort }}
+              containerPort: {{ .Values.metricPort }}
           lifecycle:
             {{ toYaml .Values.lifecycle | nindent 12 }}
           livenessProbe:
