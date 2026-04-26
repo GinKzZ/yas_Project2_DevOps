@@ -34,7 +34,7 @@ applicationConfig:
           jwt:
             issuer-uri: "http://identity.yas.local.com/realms/Yas"
     datasource:
-      url: "jdbc:postgresql://postgres-postgresql:5432/"
+      url: "jdbc:postgresql://postgres-postgresql:5432/postgres"
       username: "${POSTGRESQL_USERNAME}"
       password: "${POSTGRESQL_PASSWORD}"
     kafka:
@@ -50,14 +50,19 @@ applicationConfig:
       product: "http://product/product"
       recommendation: "http://recommendation/recommendation"
 
-# BẮT BUỘC PHẢI CÓ DẤU | - Vì template dùng trực tiếp (không qua toYaml)
+# Sửa Logback để hiện Log xịn
 logbackConfig: |
   <?xml version="1.0" encoding="UTF-8" ?>
-  <Configuration>
+  <configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+      </encoder>
+    </appender>
     <root level="INFO">
       <appender-ref ref="CONSOLE" />
     </root>
-  </Configuration>
+  </configuration>
 
 # Bổ sung các Map còn thiếu để template không bị null
 gatewayRoutesConfig:
