@@ -14,7 +14,6 @@ credentials:
   openai:
     apiKey: "update-me"
 
-# ĐỂ DẠNG MAP (KHÔNG CÓ DẤU |) - Vì template dùng toYaml
 applicationConfig:
   server:
     shutdown: "graceful"
@@ -22,11 +21,15 @@ applicationConfig:
   management:
     server:
       port: "8090"
-    health:
-      readinessstate:
-        enabled: "true"
-      livenessstate:
-        enabled: "true"
+    endpoints:
+      web:
+        exposure:
+          include: "health,info"
+    endpoint:
+      health:
+        probes:
+          enabled: true
+        show-details: "always"
   spring:
     security:
       oauth2:
