@@ -33,6 +33,10 @@ spec:
               value: "false"
             - name: KC_HTTP_ENABLED
               value: "true"
+            - name: KC_HEALTH_ENABLED
+              value: "true"
+            - name: KC_METRICS_ENABLED
+              value: "true"
           # Tăng thời gian chờ vì Keycloak khởi động rất lâu
           livenessProbe:
             httpGet:
