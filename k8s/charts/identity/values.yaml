@@ -1,0 +1,8 @@
+backend:
+  image:
+    repository: 23127206/yas-identity
+    tag: latest
+  service:
+    type: NodePort
+    port: 8080
+    nodePort: 30000 
