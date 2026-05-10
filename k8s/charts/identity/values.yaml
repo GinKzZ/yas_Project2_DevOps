@@ -6,10 +6,3 @@ backend:
     type: NodePort
     port: 8080
     nodePort: 30000
-     
-#Make admin account
-extraEnvVars:
-  - name: KEYCLOAK_ADMIN
-    value: "admin"
-  - name: KEYCLOAK_ADMIN_PASSWORD
-    value: "admin"
