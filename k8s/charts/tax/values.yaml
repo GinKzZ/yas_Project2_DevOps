@@ -4,10 +4,33 @@ backend:
     tag: latest
     pullPolicy: IfNotPresent
 
+  service:
+    type: NodePort
+    nodePort: 30013
+
+  livenessProbe:
+    initialDelaySeconds: 120
+  readinessProbe:
+    initialDelaySeconds: 120
+
   nameOverride: tax
   fullnameOverride: tax
   
+  databaseConnectionUrl: "jdbc:postgresql://postgres-postgresql:5432"
   databaseName: tax
   
   ingress:
+    enabled: false
+
+  extraEnvs:
+    - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
+      value: "http://yas.local.com:30000/realms/Yas"
+    - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI
+      value: "http://yas-identity:80/realms/Yas/protocol/openid-connect/certs"
+    - name: YAS_LOCATION_URL
+      value: "http://location"
+
+  metrics:
+    enabled: false
+  serviceMonitor:
     enabled: false
