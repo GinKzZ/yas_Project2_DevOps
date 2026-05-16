@@ -4,8 +4,6 @@ pipeline {
     environment {
         DOCKER_REGISTRY = "23127206"
         IMAGE_NAME = "yas-all-in-one"
-        // Lấy mã Commit ID
-        COMMIT_ID = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
     }
 
     stages {
@@ -16,25 +14,32 @@ pipeline {
         }
 
         stage('Build & Push All-in-one Image') {
+            // Điều kiện nếu chỉ thay đổi ở k8s thì không cần build image
+            when {
+                changeset pattern: '^(?!k8s/).*', comparator: 'REGEXP'
+            }
             steps {
                 script {
-                    echo "Đang build Image với tag: ${COMMIT_ID}"
+                    def commitId = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+                    echo "Phát hiện thay đổi ngoài thư mục k8s. Bắt đầu build Image với tag: ${commitId}"
                     
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', 
-                                     passwordVariable: 'DOCKER_PASS', 
-                                     usernameVariable: 'DOCKER_USER')]) {
+                                                     passwordVariable: 'DOCKER_PASS', 
+                                                     usernameVariable: 'DOCKER_USER')]) {
                         
-                        //Đăng nhập Docker Hub
                         sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                        
-                        //Build 1 image duy nhất chứa toàn bộ 19 file JAR
-                        sh "docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${COMMIT_ID} ."
-                        
-                        //Push image
-                        sh "docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${COMMIT_ID}"                        
-                        }
+                        sh "docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${commitId} ."
+                        sh "docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${commitId}"
+                        sh "docker rmi ${DOCKER_REGISTRY}/${IMAGE_NAME}:${commitId}"
                     }
                 }
             }
         }
     }
+    
+    post {
+        always {
+            sh 'docker logout'
+        }
+    }
+}

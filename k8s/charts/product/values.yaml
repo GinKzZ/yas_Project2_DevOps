@@ -22,7 +22,6 @@ backend:
   ingress:
     enabled: false
 
-  # --- GIỮ NGUYÊN PHẦN CẤU HÌNH CONFIGMAP ĐẶC TRƯNG CỦA PRODUCT ---
   extraVolumes:
     - name: product-application-config
       configMap:

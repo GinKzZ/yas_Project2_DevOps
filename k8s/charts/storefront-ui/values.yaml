@@ -1,6 +1,6 @@
 ui:
   image:
-    repository: 23127206/yas-storefront-ui 
+    repository: ghcr.io/nashtech-garage/yas-storefront
     tag: latest
     pullPolicy: IfNotPresent
 
@@ -9,7 +9,11 @@ ui:
 
   extraEnvs:
     - name: API_BASE_PATH
-      value: http://storefront.yas.local.com/api
+      value: http://<IP_CUA_GOOGLE_CLOUD>/api 
+
+  service:
+    type: LoadBalancer
+    port: 80
 
   ingress:
-    enabled: false 
+    enabled: false

@@ -4,5 +4,10 @@ ui:
     tag: latest
   nameOverride: backoffice-ui
   fullnameOverride: backoffice-ui
+  
+  service:
+    type: LoadBalancer
+    port: 80
+
   ingress:
     enabled: false
