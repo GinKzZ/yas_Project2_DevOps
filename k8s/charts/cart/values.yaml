@@ -4,9 +4,19 @@ backend:
     tag: latest
     pullPolicy: IfNotPresent
 
+  service:
+      type: NodePort
+      nodePort: 30001
+
+  livenessProbe:
+    initialDelaySeconds: 120
+  readinessProbe:
+    initialDelaySeconds: 120
+
   nameOverride: cart
   fullnameOverride: cart
   
+  databaseConnectionUrl: "jdbc:postgresql://postgres:5432"
   databaseName: cart
   
   ingress:
@@ -21,3 +31,16 @@ backend:
       mountPath: /opt/yas/cart
   extraApplicationConfigPaths:
     - /opt/yas/cart/cart-application.yaml
+
+  extraEnvs:
+    - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
+      value: "http://yas.local.com:30000/realms/Yas"
+    - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI
+      value: "http://identity:80/realms/Yas/protocol/openid-connect/certs"
+    - name: YAS_LOCATION_URL
+      value: "http://location"
+
+  metrics:
+    enabled: false
+  serviceMonitor:
+    enabled: false

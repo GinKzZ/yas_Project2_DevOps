@@ -4,28 +4,24 @@ backend:
     tag: latest
     pullPolicy: IfNotPresent
 
+  service:
+    type: NodePort
+    nodePort: 30011
+
+  livenessProbe:
+    initialDelaySeconds: 120
+  readinessProbe:
+    initialDelaySeconds: 120
+
   nameOverride: backoffice-bff
   fullnameOverride: backoffice-bff
-  
+
   deployment:
     annotations:
       configmap.reloader.stakater.com/reload: "yas-gateway-routes-config-configmap,backoffice-bff-extra-configmap"
-  
-  ingress:
-    enabled: true
-    host: backoffice.yas.local.com
-    path: /
 
-  extraEnvs:
-    - name: SPRING_PROFILES_ACTIVE
-      value: prod
-    - name: UI_HOST
-      value: http://backoffice-ui:3000
-  extraEnvFroms:
-    - secretRef:
-        name: yas-keycloak-credentials-secret
-    - secretRef:
-        name: yas-redis-credentials-secret
+  ingress:
+    enabled: false
 
   extraVolumes:
     - name: yas-gateway-routes-config
@@ -42,3 +38,24 @@ backend:
   extraApplicationConfigPaths:
     - /opt/yas/gateway-routes-config/gateway-routes-config.yaml
     - /opt/yas/extra-config/backoffice-bff-extra-config.yaml
+
+  extraEnvFroms:
+    - secretRef:
+        name: yas-keycloak-credentials-secret
+    - secretRef:
+        name: yas-redis-credentials-secret
+
+  extraEnvs:
+    - name: SPRING_PROFILES_ACTIVE
+      value: prod
+    - name: UI_HOST
+      value: http://backoffice-ui:3000
+    - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
+      value: "http://yas.local.com:30000/realms/Yas"
+    - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI
+      value: "http://identity:80/realms/Yas/protocol/openid-connect/certs"
+
+  metrics:
+    enabled: false
+  serviceMonitor:
+    enabled: false

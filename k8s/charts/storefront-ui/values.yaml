@@ -4,16 +4,17 @@ ui:
     tag: latest
     pullPolicy: IfNotPresent
 
-  nameOverride: storefront-ui
-  fullnameOverride: storefront-ui
+nameOverride: storefront-ui
+fullnameOverride: storefront-ui
 
-  extraEnvs:
-    - name: API_BASE_PATH
-      value: http://<IP_CUA_GOOGLE_CLOUD>/api 
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30016
 
-  service:
-    type: LoadBalancer
-    port: 80
+ingress:
+  enabled: false
 
-  ingress:
-    enabled: false
+extraEnvs:
+  - name: API_BASE_PATH
+    value: "http://yas.cloud.com:30010"

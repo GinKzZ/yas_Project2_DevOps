@@ -2,7 +2,16 @@ backend:
   image:
     repository: 23127206/yas-all-in-one
     tag: latest
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
+
+  service:
+    type: NodePort
+    nodePort: 30010
+
+  livenessProbe:
+    initialDelaySeconds: 120
+  readinessProbe:
+    initialDelaySeconds: 120
 
   nameOverride: storefront-bff
   fullnameOverride: storefront-bff
@@ -12,20 +21,7 @@ backend:
       configmap.reloader.stakater.com/reload: "yas-gateway-routes-config-configmap,storefront-bff-extra-configmap"
 
   ingress:
-    enabled: true
-    host: storefront.yas.local.com
-    path: /
-
-  extraEnvs:
-    - name: SPRING_PROFILES_ACTIVE
-      value: prod
-    - name: UI_HOST
-      value: http://storefront-ui:3000
-  extraEnvFroms:
-    - secretRef:
-        name: yas-keycloak-credentials-secret
-    - secretRef:
-        name: yas-redis-credentials-secret
+    enabled: false
 
   extraVolumes:
     - name: yas-gateway-routes-config
@@ -42,3 +38,24 @@ backend:
   extraApplicationConfigPaths:
     - /opt/yas/gateway-routes-config/gateway-routes-config.yaml
     - /opt/yas/extra-config/storefront-bff-extra-config.yaml
+
+  extraEnvFroms:
+    - secretRef:
+        name: yas-keycloak-credentials-secret
+    - secretRef:
+        name: yas-redis-credentials-secret
+
+  extraEnvs:
+    - name: SPRING_PROFILES_ACTIVE
+      value: prod
+    - name: UI_HOST
+      value: http://storefront-ui:3000
+    - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
+      value: "http://yas.local.com:30000/realms/Yas"
+    - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI
+      value: "http://identity:80/realms/Yas/protocol/openid-connect/certs"
+
+  metrics:
+    enabled: false
+  serviceMonitor:
+    enabled: false
