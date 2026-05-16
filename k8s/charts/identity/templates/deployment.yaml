@@ -24,7 +24,7 @@ spec:
             - name: KC_DB
               value: "postgres"
             - name: KC_DB_URL
-              value: "jdbc:postgresql://postgres-postgresql:5432/identity"
+              value: "jdbc:postgresql://postgres:5432/identity"
             - name: KC_DB_USERNAME
               value: "postgres"
             - name: KC_DB_PASSWORD
