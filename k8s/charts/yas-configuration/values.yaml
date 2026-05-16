@@ -35,13 +35,13 @@ applicationConfig:
       oauth2:
         resourceserver:
           jwt:
-            issuer-uri: "http://identity.yas.local.com/realms/Yas"
+            issuer-uri: "http://identity:8080/realms/Yas"
     datasource:
       url: "jdbc:postgresql://postgres-postgresql:5432/postgres"
       username: "${POSTGRESQL_USERNAME}"
       password: "${POSTGRESQL_PASSWORD}"
     kafka:
-      bootstrap-servers: "kafka-cluster-kafka-brokers.kafka:9092"
+      bootstrap-servers: "kafka:9092"
   yas:
     services:
       cart: "http://cart/cart"
