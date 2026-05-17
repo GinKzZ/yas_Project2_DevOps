@@ -3,14 +3,13 @@ ui:
     repository: ghcr.io/nashtech-garage/yas-storefront
     tag: latest
     pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30016
 
 nameOverride: storefront-ui
 fullnameOverride: storefront-ui
-
-service:
-  type: NodePort
-  port: 80
-  nodePort: 30016
 
 ingress:
   enabled: false
