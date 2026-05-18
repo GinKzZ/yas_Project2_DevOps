@@ -46,44 +46,44 @@ backend:
         name: yas-redis-credentials-secret
 
   extraEnvs:
-      - name: SPRING_PROFILES_ACTIVE
-        value: prod
-      - name: UI_HOST
-        value: http://storefront-ui:3000
+    - name: SPRING_PROFILES_ACTIVE
+      value: prod
+    - name: UI_HOST
+      value: http://storefront-ui:3000
         
-      # 1. ÉP SPRING BOOT PHẢI NHẬN DIỆN ĐÚNG CỔNG PHÍA SAU NGINX
-      - name: SERVER_FORWARD_HEADERS_STRATEGY
-        value: framework
+    # 1. ÉP SPRING BOOT PHẢI NHẬN DIỆN ĐÚNG CỔNG PHÍA SAU NGINX
+    - name: SERVER_FORWARD_HEADERS_STRATEGY
+      value: framework
 
-      - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
-        value: "http://yas.local.com:30000/realms/Yas"
-      - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI
-        value: "http://identity:80/realms/Yas/protocol/openid-connect/certs"
+    - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
+      value: "http://yas.local.com:30000/realms/Yas"
+    - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI
+      value: "http://identity:80/realms/Yas/protocol/openid-connect/certs"
 
-      # Luồng bẻ lái giao diện đăng nhập cho trình duyệt (Dùng domain ngoài)
-      - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_AUTHORIZATION_URI
-        value: "http://yas.local.com:30000/realms/Yas/protocol/openid-connect/auth"
+    # Luồng bẻ lái giao diện đăng nhập cho trình duyệt (Dùng domain ngoài)
+    - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_AUTHORIZATION_URI
+      value: "http://yas.local.com:30000/realms/Yas/protocol/openid-connect/auth"
 
-      # 2. ÉP BFF ĐỔI TOKEN VÀ USERINFO QUA MẠNG NỘI BỘ K8S CỔNG 80 (TRÁNH LỖI DNS)
-      - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_TOKEN_URI
-        value: "http://identity:80/realms/Yas/protocol/openid-connect/token"
-      - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_USER_INFO_URI
-        value: "http://identity:80/realms/Yas/protocol/openid-connect/userinfo"
+    # 2. ÉP BFF ĐỔI TOKEN VÀ USERINFO QUA MẠNG NỘI BỘ K8S CỔNG 80 (TRÁNH LỖI DNS)
+    - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_TOKEN_URI
+      value: "http://identity:80/realms/Yas/protocol/openid-connect/token"
+    - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_USER_INFO_URI
+      value: "http://identity:80/realms/Yas/protocol/openid-connect/userinfo"
 
-      # Dàn danh bạ microservices của anh em mình
-      - name: YAS_SERVICES_PRODUCT
-        value: http://product
-      - name: YAS_SERVICES_CART
-        value: http://cart
-      - name: YAS_SERVICES_CUSTOMER
-        value: http://customer
-      - name: YAS_SERVICES_ORDER
-        value: http://order
-      - name: YAS_SERVICES_LOCATION
-        value: http://location
-      - name: YAS_SERVICES_INVENTORY
-        value: http://inventory
-      - name: YAS_SERVICES_TAX
-        value: http://tax
-      - name: YAS_SERVICES_MEDIA
-        value: http://media
+    # Dàn danh bạ microservices của anh em mình
+    - name: YAS_SERVICES_PRODUCT
+      value: http://product
+    - name: YAS_SERVICES_CART
+      value: http://cart
+    - name: YAS_SERVICES_CUSTOMER
+      value: http://customer
+    - name: YAS_SERVICES_ORDER
+      value: http://order
+    - name: YAS_SERVICES_LOCATION
+      value: http://location
+    - name: YAS_SERVICES_INVENTORY
+      value: http://inventory
+    - name: YAS_SERVICES_TAX
+      value: http://tax
+    - name: YAS_SERVICES_MEDIA
+      value: http://media
