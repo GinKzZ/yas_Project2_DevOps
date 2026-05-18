@@ -16,4 +16,4 @@ ingress:
 
 extraEnvs:
   - name: API_BASE_PATH
-    value: "http://yas.local.com:30010"
+    value: "http://storefront-bff:80"
