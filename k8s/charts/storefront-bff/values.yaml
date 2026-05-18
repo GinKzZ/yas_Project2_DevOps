@@ -76,5 +76,3 @@ backend:
       value: http://inventory
     - name: YAS_SERVICES_TAX
       value: http://tax
-    - name: YAS_SERVICES_MEDIA
-      value: http://media
