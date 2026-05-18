@@ -9,7 +9,7 @@ ui:
     nodePort: 30016
   extraEnvs:
     - name: API_BASE_PATH
-      value: "http://storefront-bff:80"
+      value: "http://34.60.3.57:30010"
 
 nameOverride: storefront-ui
 fullnameOverride: storefront-ui
