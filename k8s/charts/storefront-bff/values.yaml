@@ -54,6 +54,8 @@ backend:
       value: "http://yas.local.com:30000/realms/Yas"
     - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI
       value: "http://identity:80/realms/Yas/protocol/openid-connect/certs"
+    - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_AUTHORIZATION_URI
+      value: "http://yas.local.com:30000/realms/Yas/protocol/openid-connect/auth"
     - name: YAS_SERVICES_PRODUCT
       value: http://product
     - name: YAS_SERVICES_CART
