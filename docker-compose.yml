@@ -93,7 +93,7 @@ services:
     - ./deployment/app-config:/app-config      
     networks:
       - yas-network
-  storefront-nextjs:
+  storefront-ui:
     image: ghcr.io/nashtech-garage/yas-storefront:latest
     networks:
       - yas-network

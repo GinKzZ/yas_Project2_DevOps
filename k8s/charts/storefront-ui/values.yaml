@@ -4,9 +4,8 @@ ui:
     tag: latest
     pullPolicy: IfNotPresent
   service:
-    type: NodePort
+    type: ClusterIP
     port: 80
-    nodePort: 30016
   extraEnvs:
     - name: API_BASE_PATH
       value: "http://storefront-bff:80"
