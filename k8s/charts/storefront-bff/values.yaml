@@ -47,11 +47,11 @@ backend:
 
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE
-      value: prod
+      value: "prod"
     - name: UI_HOST
-      value: http://storefront-ui:3000
+      value: "http://storefront-ui:3000"
     - name: SERVER_FORWARD_HEADERS_STRATEGY
-      value: framework
+      value: "framework"
     - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
       value: "http://yas.local.com:30000/realms/Yas"
     - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI
@@ -63,18 +63,18 @@ backend:
     - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_USER_INFO_URI
       value: "http://identity:80/realms/Yas/protocol/openid-connect/userinfo"
     - name: YAS_SERVICES_PRODUCT
-      value: http://product
+      value: "http://product"
     - name: YAS_SERVICES_CART
-      value: http://cart
+      value: "http://cart"
     - name: YAS_SERVICES_CUSTOMER
-      value: http://customer
+      value: "http://customer"
     - name: YAS_SERVICES_ORDER
-      value: http://order
+      value: "http://order"
     - name: YAS_SERVICES_LOCATION
-      value: http://location
+      value: "http://location"
     - name: YAS_SERVICES_INVENTORY
-      value: http://inventory
+      value: "http://inventory"
     - name: YAS_SERVICES_TAX
-      value: http://tax
+      value: "http://tax"
     - name: YAS_SERVICES_MEDIA
-      value: http://media
+      value: "http://media"
