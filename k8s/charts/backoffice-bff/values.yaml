@@ -66,7 +66,6 @@ backend:
     - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_USER_INFO_URI
       value: "http://identity:80/realms/Yas/protocol/openid-connect/userinfo"
       
-    # 🚀 KHỐI CẤU HÌNH ĐÃ SỬA LỖI: Đồng bộ hóa định danh Client 'api-client' cho Admin UI
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_API_CLIENT_CLIENT_ID
       value: "backoffice-bff"
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_API_CLIENT_PROVIDER
@@ -75,11 +74,11 @@ backend:
       valueFrom:
         secretKeyRef:
           name: yas-keycloak-credentials-secret
-          key: backoffice-bff-secret # 🚀 Đã sửa lề chuẩn đét cho K8s
+          key: backoffice-bff-secret
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_API_CLIENT_AUTHORIZATION_GRANT_TYPE
       value: "authorization_code"
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_API_CLIENT_REDIRECT_URI
-      value: "http://yas.local.com:30016/login/oauth2/code/api-client" # 🚀 Ép cứng link callback qua ngõ Nginx 30016 để chia sẻ Cookie
+      value: "http://yas.local.com:30016/login/oauth2/code/api-client"
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_API_CLIENT_SCOPE
       value: "openid,profile,email"
       
