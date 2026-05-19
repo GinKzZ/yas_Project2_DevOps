@@ -62,6 +62,10 @@ backend:
       value: "http://identity:80/realms/Yas/protocol/openid-connect/token"
     - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_USER_INFO_URI
       value: "http://identity:80/realms/Yas/protocol/openid-connect/userinfo"
+    - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_KEYCLOAK_REDIRECT_URI
+      value: "http://yas.local.com:30016/login/oauth2/code/keycloak" # 💥 BẮT BUỘC PHẢI LÀ 30016
+    - name: NEXT_PUBLIC_AUTH_SERVER_URL
+      value: "http://yas.local.com:30016/realms/yas"
     - name: YAS_SERVICES_PRODUCT
       value: "http://product"
     - name: YAS_SERVICES_CART
