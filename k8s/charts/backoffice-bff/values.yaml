@@ -95,6 +95,10 @@ backend:
       value: "http://tax"
     - name: YAS_SERVICES_MEDIA
       value: "http://media"
+    - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI
+      value: "http://yas.local.com:30016/realms/Yas"
+    - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_AUTHORIZATION_URI
+      value: "http://yas.local.com:30016/realms/Yas/protocol/openid-connect/auth"
 
   metrics:
     enabled: false
