@@ -78,3 +78,9 @@ backend:
       value: "http://tax"
     - name: YAS_SERVICES_MEDIA
       value: "http://media"
+
+# 4 DÒNG CHỐT HẠ: Ép tắt ServiceMonitor để ArgoCD không check lỗi CRD nữa
+metrics:
+  enabled: false
+serviceMonitor:
+  enabled: false
