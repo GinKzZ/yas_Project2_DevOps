@@ -67,7 +67,7 @@ backend:
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_KEYCLOAK_REDIRECT_URI
       value: "http://yas.local.com:30016/login/oauth2/code/keycloak"
     - name: NEXT_PUBLIC_AUTH_SERVER_URL
-      value: "http://yas.local.com:30016/realms/yas"
+      value: "http://yas.local.com:30016/realms/Yas"
     - name: YAS_SERVICES_PRODUCT
       value: "http://product"
     - name: YAS_SERVICES_CART
