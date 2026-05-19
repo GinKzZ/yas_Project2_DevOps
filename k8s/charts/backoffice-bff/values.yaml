@@ -30,11 +30,13 @@ backend:
     - name: backoffice-bff-extra-config
       configMap:
         name: backoffice-bff-extra-configmap
+
   extraVolumeMounts:
     - name: yas-gateway-routes-config
       mountPath: /opt/yas/gateway-routes-config
     - name: backoffice-bff-extra-config
       mountPath: /opt/yas/extra-config
+
   extraApplicationConfigPaths:
     - /opt/yas/gateway-routes-config/gateway-routes-config.yaml
     - /opt/yas/extra-config/backoffice-bff-extra-config.yaml
@@ -64,7 +66,7 @@ backend:
     - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_USER_INFO_URI
       value: "http://identity:80/realms/Yas/protocol/openid-connect/userinfo"
       
-    # 🚀 BỔ SUNG ĐỦ LUỒNG ALIAS: Trói đuôi api-client bẻ hướng của Next.js về Keycloak
+    # 🚀 KHỐI CẤU HÌNH ĐÃ SỬA LỖI: Đồng bộ hóa định danh Client 'api-client' cho Admin UI
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_API_CLIENT_CLIENT_ID
       value: "backoffice-bff"
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_API_CLIENT_PROVIDER
@@ -73,11 +75,11 @@ backend:
       valueFrom:
         secretKeyRef:
           name: yas-keycloak-credentials-secret
-          key: backoffice-bff-secret
+          key: backoffice-bff-secret # 🚀 Đã sửa lề chuẩn đét cho K8s
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_API_CLIENT_AUTHORIZATION_GRANT_TYPE
       value: "authorization_code"
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_API_CLIENT_REDIRECT_URI
-      value: "{baseUrl}/login/oauth2/code/{registrationId}"
+      value: "http://yas.local.com:30016/login/oauth2/code/api-client" # 🚀 Ép cứng link callback qua ngõ Nginx 30016 để chia sẻ Cookie
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_API_CLIENT_SCOPE
       value: "openid,profile,email"
       
@@ -98,7 +100,6 @@ backend:
     - name: YAS_SERVICES_MEDIA
       value: "http://media"
 
-  # ĐÃ CHUẨN LỀ KHÍT KHÁP: Tắt hẳn ServiceMonitor tránh bẫy nghẽn luồng ArgoCD
   metrics:
     enabled: false
   serviceMonitor:
