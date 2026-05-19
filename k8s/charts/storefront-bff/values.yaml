@@ -34,7 +34,7 @@ backend:
   extraVolumeMounts:
     - name: yas-gateway-routes-config
       mountPath: /opt/yas/gateway-routes-config
-    - name: backoffice-bff-extra-config
+    - name: storefront-bff-extra-config
       mountPath: /opt/yas/extra-config
 
   extraApplicationConfigPaths:
