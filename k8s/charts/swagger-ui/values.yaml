@@ -20,9 +20,6 @@ podSecurityContext: {}
 
 securityContext: {}
 
-# ==========================================
-# CHỖ NÀY ĐÃ ĐƯỢC FIX CÚ PHÁP JSON SẠCH SẼ:
-# ==========================================
 baseUrl: /
 urls: |
   [
