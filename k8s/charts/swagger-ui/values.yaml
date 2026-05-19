@@ -23,7 +23,7 @@ podSecurityContext: {}
 securityContext: {}
 
 baseUrl: /
-urls: "[{\"url\":\"http://yas.local.com/product/v3/api-docs\",\"name\":\"Product\"},{\"url\":\"http://yas.local.com/media/v3/api-docs\",\"name\":\"Media\"},{\"url\":\"http://yas.local.com/customer/v3/api-docs\",\"name\":\"Customer\"},{\"url\":\"http://yas.local.com/cart/v3/api-docs\",\"name\":\"Cart\"},{\"url\":\"http://yas.local.com/order/v3/api-docs\",\"name\":\"Order\"},{\"url\":\"http://yas.local.com/location/v3/api-docs\",\"name\":\"Location\"},{\"url\":\"http://yas.local.com/inventory/v3/api-docs\",\"name\":\"Inventory\"},{\"url\":\"http://yas.local.com/tax/v3/api-docs\",\"name\":\"Tax\"},{\"url\":\"http://yas.local.com/search/v3/api-docs\",\"name\":\"Search\"}]"
+urls: "[{\"url\":\"http://yas.local.com:30008/v3/api-docs\",\"name\":\"Product\"},{\"url\":\"http://yas.local.com:30003/v3/api-docs\",\"name\":\"Media\"},{\"url\":\"http://yas.local.com:30014/v3/api-docs\",\"name\":\"Customer\"},{\"url\":\"http://yas.local.com:30001/v3/api-docs\",\"name\":\"Cart\"},{\"url\":\"http://yas.local.com:30002/v3/api-docs\",\"name\":\"Order\"},{\"url\":\"http://yas.local.com:30009/v3/api-docs\",\"name\":\"Location\"},{\"url\":\"http://yas.local.com:30007/v3/api-docs\",\"name\":\"Inventory\"},{\"url\":\"http://yas.local.com:30013/v3/api-docs\",\"name\":\"Tax\"},{\"url\":\"http://yas.local.com:30004/v3/api-docs\",\"name\":\"Search\"}]"
 
 service:
   type: NodePort      
