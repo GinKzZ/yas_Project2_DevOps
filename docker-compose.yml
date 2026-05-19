@@ -53,7 +53,7 @@ services:
     - ./deployment/app-config:/app-config
     networks:
       - yas-network
-  backoffice-nextjs:
+  backoffice-ui:
     image: ghcr.io/nashtech-garage/yas-backoffice:latest
     networks:
     - yas-network
