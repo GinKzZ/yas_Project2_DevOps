@@ -6,6 +6,8 @@ backend:
 
   service:
     type: NodePort
+    port: 80
+    nodePort: 8080
     nodePort: 30011
 
   livenessProbe:
@@ -80,21 +82,21 @@ backend:
     - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_API_CLIENT_SCOPE
       value: "openid,profile,email"
     - name: YAS_SERVICES_PRODUCT
-      value: "http://product"
+      value: "http://product:80"
     - name: YAS_SERVICES_CART
-      value: "http://cart"
+      value: "http://cart:80"
     - name: YAS_SERVICES_CUSTOMER
-      value: "http://customer"
+      value: "http://customer:80"
     - name: YAS_SERVICES_ORDER
-      value: "http://order"
+      value: "http://order:80"
     - name: YAS_SERVICES_LOCATION
-      value: "http://location"
+      value: "http://location:80"
     - name: YAS_SERVICES_INVENTORY
-      value: "http://inventory"
+      value: "http://inventory:80"
     - name: YAS_SERVICES_TAX
-      value: "http://tax"
+      value: "http://tax:80"
     - name: YAS_SERVICES_MEDIA
-      value: "http://media"
+      value: "http://media:80"
     - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI
       value: "http://yas.local.com:30016/realms/Yas"
     - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_AUTHORIZATION_URI

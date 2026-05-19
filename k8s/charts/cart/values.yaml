@@ -5,8 +5,10 @@ backend:
     pullPolicy: IfNotPresent
 
   service:
-      type: NodePort
-      nodePort: 30001
+    type: NodePort
+    port: 80
+    targetPort: 8080
+    nodePort: 30001
 
   livenessProbe:
     initialDelaySeconds: 120
