@@ -15,7 +15,7 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-  sidecar.istio.io/inject: "false"                 # Ép tắt sidecar từ values
+  sidecar.istio.io/inject: "false"
   sidecar.istio.io/rewriteAppHTTPProbers: "false"
 
 podSecurityContext: {}
@@ -23,33 +23,13 @@ podSecurityContext: {}
 securityContext: {}
 
 baseUrl: /
-# Chuẩn hóa chuỗi JSON trên 1 dòng để tránh lỗi thụt lề YAML của Helm
 urls: "[{\"url\":\"http://product:80/v3/api-docs\",\"name\":\"Product\"},{\"url\":\"http://media:80/v3/api-docs\",\"name\":\"Media\"},{\"url\":\"http://customer:80/v3/api-docs\",\"name\":\"Customer\"},{\"url\":\"http://cart:80/v3/api-docs\",\"name\":\"Cart\"},{\"url\":\"http://order:80/v3/api-docs\",\"name\":\"Order\"},{\"url\":\"http://location:80/v3/api-docs\",\"name\":\"Location\"},{\"url\":\"http://inventory:80/v3/api-docs\",\"name\":\"Inventory\"},{\"url\":\"http://tax:80/v3/api-docs\",\"name\":\"Tax\"},{\"url\":\"http://search:80/v3/api-docs\",\"name\":\"Search\"}]"
 
 service:
   type: NodePort      
-  port: 80            # Cổng nội bộ của Service vẫn để 80 cho đồng bộ hệ thống
-  targetPort: 8080    # SỬA THÀNH 8080: Cổng thật của container swagger-ui gốc
+  port: 80            
+  targetPort: 8080    
   nodePort: 30012     
-
-livenessProbe:
-  httpGet:
-    path: /
-    port: 8080        # Đổi thành 8080 theo cổng thật của container
-  initialDelaySeconds: 15
-  periodSeconds: 10
-  timeoutSeconds: 2
-  failureThreshold: 3
-
-readinessProbe:
-  httpGet:
-    path: /
-    port: 8080        # Đổi thành 8080 theo cổng thật của container
-  initialDelaySeconds: 15
-  periodSeconds: 10
-  timeoutSeconds: 2
-  successThreshold: 1
-  failureThreshold: 3
 
 ingress:
   enabled: false      
