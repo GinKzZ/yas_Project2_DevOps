@@ -3,9 +3,8 @@ ui:
     repository: ghcr.io/nashtech-garage/yas-backoffice
     tag: latest
   service:
-    type: NodePort
+    type: ClusterIP
     port: 80
-    nodePort: 30015
 
 nameOverride: backoffice-ui
 fullnameOverride: backoffice-ui
