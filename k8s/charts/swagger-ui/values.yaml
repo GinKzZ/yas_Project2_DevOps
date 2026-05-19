@@ -1,13 +1,8 @@
-# Default values for swagger-ui.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
 replicaCount: 1
 
 image:
   repository: swaggerapi/swagger-ui
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
   tag: "v4.16.0"
 
 imagePullSecrets: []
@@ -15,19 +10,14 @@ nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
   name: ""
 
 podAnnotations:
   sidecar.istio.io/rewriteAppHTTPProbers: "false"
 
 podSecurityContext: {}
-  # fsGroup: 2000
 
 securityContext: {}
 
@@ -46,13 +36,33 @@ urls: |
   ]
 
 service:
-  type: NodePort      # Đổi từ ClusterIP sang NodePort để bro trực tiếp truy cập test bên ngoài
-  port: 80            # Chuẩn hóa cổng nội bộ Mesh là 80
-  targetPort: 80      # Trỏ thẳng vào containerPort 80 thực tế của Pod để tránh lỗi 500 probe
-  nodePort: 30012     # Giữ lại cổng NodePort truy cập từ trình duyệt máy bro
+  type: NodePort      
+  port: 80            
+  targetPort: 80      
+  nodePort: 30012     
+
+# Chỗ mới thêm vào nằm ở đây nhe bro:
+livenessProbe:
+  httpGet:
+    path: /
+    port: 80
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 2
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 80
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 2
+  successThreshold: 1
+  failureThreshold: 3
 
 ingress:
-  enabled: false      # Tạm thời tắt Ingress vì bro đang demo Service Mesh nội bộ bằng NodePort/Gateway
+  enabled: false      
   className: "nginx"
   host: api.yas.local.com
   annotations: {}
