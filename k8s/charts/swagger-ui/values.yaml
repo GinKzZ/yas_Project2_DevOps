@@ -20,16 +20,22 @@ podSecurityContext: {}
 
 securityContext: {}
 
+# ==========================================
+# CHỖ NÀY ĐÃ ĐƯỢC FIX CÚ PHÁP JSON SẠCH SẼ:
+# ==========================================
 baseUrl: /
-urls: "[{ url: 'http://product:80/v3/api-docs', name: 'Product' },
-      { url: 'http://media:80/v3/api-docs', name: 'Media' },
-      { url: 'http://customer:80/v3/api-docs', name: 'Customer' }, 
-      { url: 'http://cart:80/v3/api-docs', name: 'Cart'},
-      { url: 'http://order:80/v3/api-docs', name: 'Order'},
-      { url: 'http://location:80/v3/api-docs', name: 'Location'}, 
-      { url: 'http://inventory:80/v3/api-docs', name: 'Inventory'},
-      { url: 'http://tax:80/v3/api-docs', name: 'Tax' },
-      { url: 'http://search:80/v3/api-docs', name: 'Search'}]"
+urls: |
+  [
+    { "url": "http://product:80/v3/api-docs", "name": "Product" },
+    { "url": "http://media:80/v3/api-docs", "name": "Media" },
+    { "url": "http://customer:80/v3/api-docs", "name": "Customer" },
+    { "url": "http://cart:80/v3/api-docs", "name": "Cart" },
+    { "url": "http://order:80/v3/api-docs", "name": "Order" },
+    { "url": "http://location:80/v3/api-docs", "name": "Location" },
+    { "url": "http://inventory:80/v3/api-docs", "name": "Inventory" },
+    { "url": "http://tax:80/v3/api-docs", "name": "Tax" },
+    { "url": "http://search:80/v3/api-docs", "name": "Search" }
+  ]
 
 service:
   type: NodePort
@@ -45,7 +51,7 @@ ingress:
   hosts:
     - host: api.yas.local.com
       paths:
-        - path: /swagger-ui
+        - path: /       # Fix lại đồng bộ với baseUrl
           pathType: ImplementationSpecific
   tls: []
 
