@@ -88,6 +88,6 @@ backend:
       value: "http://media:80"
 
   metrics:
-    enabled: false
+    enabled: true
   serviceMonitor:
-    enabled: false
+    enabled: true

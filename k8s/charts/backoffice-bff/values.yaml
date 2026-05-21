@@ -103,6 +103,6 @@ backend:
       value: "http://yas.local.com:30016/realms/Yas/protocol/openid-connect/auth"
 
   metrics:
-    enabled: false
+    enabled: true
   serviceMonitor:
-    enabled: false
+    enabled: true
