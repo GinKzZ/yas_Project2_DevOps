@@ -32,6 +32,6 @@ backend:
       value: "http://location"
 
   metrics:
-    enabled: false
+    enabled: true
   serviceMonitor:
-    enabled: false
+    enabled: true
