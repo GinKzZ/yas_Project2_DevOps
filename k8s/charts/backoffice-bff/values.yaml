@@ -10,6 +10,11 @@ backend:
     nodePort: 8080
     nodePort: 30011
 
+  podAnnotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/actuator/prometheus"
+    prometheus.io/port: "8090"
+
   livenessProbe:
     initialDelaySeconds: 120
   readinessProbe:
