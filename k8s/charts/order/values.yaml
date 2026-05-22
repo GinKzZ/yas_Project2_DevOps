@@ -2,7 +2,7 @@ backend:
   image:
     repository: 23127206/yas-all-in-one
     tag: latest
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   service:
     type: NodePort
@@ -44,6 +44,8 @@ backend:
       value: "http://identity:80/realms/Yas/protocol/openid-connect/certs"
     - name: YAS_LOCATION_URL
       value: "http://location"
+    - name: SPRING_APPLICATION_JSON
+      value: '{"management":{"endpoints":{"web":{"exposure":{"include":"health,info,prometheus"}}}}}'
 
   metrics:
     enabled: true

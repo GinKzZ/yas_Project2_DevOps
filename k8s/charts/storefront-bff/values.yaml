@@ -89,6 +89,8 @@ backend:
       value: "http://tax:80"
     - name: YAS_SERVICES_MEDIA
       value: "http://media:80"
+    - name: SPRING_APPLICATION_JSON
+      value: '{"management":{"endpoints":{"web":{"exposure":{"include":"health,info,prometheus"}}}}}'
 
   metrics:
     enabled: true
