@@ -1,24 +1,21 @@
-apiVersion: grafana.integreatly.org/v1beta1
-kind: Grafana
-metadata:
-  name: grafana
-  namespace: yas-dev
-  labels:
-    dashboards: "grafana"
-spec:
-  client:
-    preferDirectProxy: true
-  deployment:
-    spec:
-      replicas: 1
-  config:
-    security:
-      admin_user: "admin"
-      admin_password: "admin"
-  service:
-    spec:
-      type: NodePort
-      ports:
-      - port: 3000
-        targetPort: 3000
-        nodePort: 30018
+hostname: yas.local.com
+grafana:
+  username: admin
+  password: admin
+postgresql:
+  url: postgres-postgresql.yas-dev:5432  
+  username: postgres
+  password: admin
+
+# 🟢 KHỐI CHỐT HẠ ĐỂ ARGOCD TỰ ĐẺ NODEPORT:
+# Repo Yas viết template hứng trực tiếp biến cấu hình Grafana thông qua block phẳng này
+grafanaDeployment:
+  spec:
+    replicas: 1
+grafanaService:
+  spec:
+    type: NodePort
+    ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30018
