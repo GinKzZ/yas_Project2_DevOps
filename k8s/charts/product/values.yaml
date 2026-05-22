@@ -10,12 +10,7 @@ backend:
     targetPort: 8080
     nodePort: 30008
 
-  podAnnotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/path: "/actuator/prometheus"
-    prometheus.io/port: "8090"
-    
-    prometheus.interface.outpoint/merge: "true"
+  podAnnotations:    
     proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
 
   livenessProbe:
@@ -49,14 +44,6 @@ backend:
       value: "http://identity:80/realms/Yas/protocol/openid-connect/certs"
     - name: YAS_LOCATION_URL
       value: "http://location"
-    - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
-      value: "prometheus,health,info"
-    - name: MANAGEMENT_ENDPOINT_PROMETHEUS_ENABLED
-      value: "true"
-    - name: MANAGEMENT_SERVER_PORT
-      value: "8090"
-    - name: SPRING_APPLICATION_JSON
-      value: '{"management":{"endpoints":{"web":{"exposure":{"include":"prometheus,health,info"}}},"endpoint":{"prometheus":{"enabled":true}},"server":{"port":8090}}}'
 
   metrics:
     enabled: true
