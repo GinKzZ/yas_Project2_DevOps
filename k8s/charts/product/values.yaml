@@ -55,6 +55,8 @@ backend:
       value: "true"
     - name: MANAGEMENT_SERVER_PORT
       value: "8090"
+    - name: SPRING_APPLICATION_JSON
+      value: '{"management":{"endpoints":{"web":{"exposure":{"include":"prometheus,health,info"}}},"endpoint":{"prometheus":{"enabled":true}},"server":{"port":8090}}}'
 
   metrics:
     enabled: true
