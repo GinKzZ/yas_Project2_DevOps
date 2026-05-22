@@ -44,6 +44,8 @@ backend:
       value: "http://identity:80/realms/Yas/protocol/openid-connect/certs"
     - name: YAS_LOCATION_URL
       value: "http://location"
+    - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+      value: "health,info,prometheus"
 
   metrics:
     enabled: true
