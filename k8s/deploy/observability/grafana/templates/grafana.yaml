@@ -11,3 +11,10 @@ spec:
   deployment:
     spec:
       replicas: 1
+  service:
+    spec:
+      type: NodePort
+      ports:
+      - port: 3000
+        targetPort: 3000
+        nodePort: 30018
