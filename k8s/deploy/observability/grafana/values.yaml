@@ -7,10 +7,7 @@ postgresql:
   username: postgres
   password: admin
 
-service:
-  type: NodePort
-  ports:
-  - name: grafana-port
-    port: 3000
-    targetPort: 3000
+grafanaSpec:
+  service:
+    type: NodePort
     nodePort: 30018
