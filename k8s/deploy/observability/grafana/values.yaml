@@ -1,4 +1,4 @@
-hostname: grafana.yas.local.com
+hostname: yas.local.com
 grafana:
   username: admin
   password: admin
@@ -6,3 +6,11 @@ postgresql:
   url: postgres-postgresql.yas-dev:5432  
   username: postgres
   password: admin
+
+service:
+  type: NodePort
+  ports:
+  - name: grafana-port
+    port: 3000
+    targetPort: 3000
+    nodePort: 30015
