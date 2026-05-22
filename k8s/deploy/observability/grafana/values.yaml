@@ -3,6 +3,6 @@ grafana:
   username: admin
   password: admin
 postgresql:
-  url: postgresql.postgres:5432
-  username: yasadminuser
+  url: postgres-postgresql.yas-dev:5432  
+  username: postgres
   password: admin
