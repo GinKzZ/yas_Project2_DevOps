@@ -7,7 +7,13 @@ postgresql:
   username: postgres
   password: admin
 
-grafanaSpec:
-  service:
+grafanaDeployment:
+  spec:
+    replicas: 1
+grafanaService:
+  spec:
     type: NodePort
-    nodePort: 30018
+    ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30018
