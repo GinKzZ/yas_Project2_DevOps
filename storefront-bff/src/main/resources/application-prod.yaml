@@ -16,45 +16,52 @@ spring:
               uri: http://cart
               predicates:
                 - Path=/api/cart/**
+              filters:
+                - StripPrefix=1
             - id: customer
               uri: http://customer
               predicates:
                 - Path=/api/customer/**
+              filters:
+                - StripPrefix=1
             - id: order
               uri: http://order
               predicates:
                 - Path=/api/order/**
+              filters:
+                - StripPrefix=1
             - id: inventory
               uri: http://inventory
               predicates:
                 - Path=/api/inventory/**
+              filters:
+                - StripPrefix=1
             - id: media
               uri: http://media
               predicates:
                 - Path=/api/media/**
+              filters:
+                - StripPrefix=1
             - id: search
               uri: http://search
               predicates:
                 - Path=/api/search/**
+              filters:
+                - StripPrefix=1
             - id: tax
               uri: http://tax
               predicates:
                 - Path=/api/tax/**
+              filters:
+                - StripPrefix=1
             - id: promotion
               uri: http://promotion
               predicates:
                 - Path=/api/promotion/**
-                
               filters:
                 - StripPrefix=1
-            - id: api
-              uri: http://nginx
-              predicates:
-                - Path=/api/**
-              filters:
-                - DedupeResponseHeader=Origin Access-Control-Request-Method Access-Control-Request-Headers
-                - TokenRelay=
-                - StripPrefix=1
+            # XÓA HẲN ROUTE "id: api" (http://nginx) ĐỂ TRÁNH VÒNG LẶP CHẾT
+            # CATCH-ALL ĐƯỢC ĐẨY XUỐNG CUỐI CÙNG CHO NEXTJS
             - id: nextjs
               uri: http://storefront-ui:3000
               predicates:
