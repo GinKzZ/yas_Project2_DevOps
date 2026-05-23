@@ -1,20 +1,23 @@
 spring:
-  #  PHẦN 1: BẢO MẬT KEYCLOAK (ĐÃ THÊM CỔNG :8080 NỘI BỘ CHUẨN)
+  application:
+    name: storefront-bff
+
+  # PHẦN 1: BẢO MẬT (DÙNG CỔNG 80 MẶC ĐỊNH CỦA SERVICE)
   security:
     oauth2:
       client:
         provider:
           keycloak:
-            issuer-uri: http://identity:8080/realms/Yas
-            authorization-uri: http://identity:8080/realms/Yas/protocol/openid-connect/auth
-            token-uri: http://identity:8080/realms/Yas/protocol/openid-connect/token
-            user-info-uri: http://identity:8080/realms/Yas/protocol/openid-connect/userinfo
-            jwk-set-uri: http://identity:8080/realms/Yas/protocol/openid-connect/certs
+            issuer-uri: http://identity/realms/Yas
+            authorization-uri: http://identity/realms/Yas/protocol/openid-connect/auth
+            token-uri: http://identity/realms/Yas/protocol/openid-connect/token
+            user-info-uri: http://identity/realms/Yas/protocol/openid-connect/userinfo
+            jwk-set-uri: http://identity/realms/Yas/protocol/openid-connect/certs
       resourceserver:
         jwt:
-          issuer-uri: http://identity:8080/realms/Yas
+          issuer-uri: http://identity/realms/Yas
 
-  #  PHẦN 2: PHÂN LUỒNG MẠNG GATEWAY 
+  # PHẦN 2: PHÂN LUỒNG MẠNG GATEWAY (ĐÃ SỬA STRIPPREFIX)
   cloud:
     gateway:
       server:
@@ -76,7 +79,8 @@ spring:
                 - Path=/api/promotion/**
               filters:
                 - StripPrefix=1
-            # ĐÓN LÕNG CUỐI CÙNG CHO NEXTJS UI
+                
+            #  CATCH-ALL ĐƯỢC ĐẨY XUỐNG CUỐI CÙNG CHO NEXTJS UI
             - id: nextjs
               uri: http://storefront-ui:3000
               predicates:
