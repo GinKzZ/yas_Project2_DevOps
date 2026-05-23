@@ -1,4 +1,20 @@
 spring:
+  #  PHẦN 1: BẢO MẬT KEYCLOAK (ĐÃ THÊM CỔNG :8080 NỘI BỘ CHUẨN)
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://identity:8080/realms/Yas
+            authorization-uri: http://identity:8080/realms/Yas/protocol/openid-connect/auth
+            token-uri: http://identity:8080/realms/Yas/protocol/openid-connect/token
+            user-info-uri: http://identity:8080/realms/Yas/protocol/openid-connect/userinfo
+            jwk-set-uri: http://identity:8080/realms/Yas/protocol/openid-connect/certs
+      resourceserver:
+        jwt:
+          issuer-uri: http://identity:8080/realms/Yas
+
+  #  PHẦN 2: PHÂN LUỒNG MẠNG GATEWAY 
   cloud:
     gateway:
       server:
@@ -60,8 +76,7 @@ spring:
                 - Path=/api/promotion/**
               filters:
                 - StripPrefix=1
-            # XÓA HẲN ROUTE "id: api" (http://nginx) ĐỂ TRÁNH VÒNG LẶP CHẾT
-            # CATCH-ALL ĐƯỢC ĐẨY XUỐNG CUỐI CÙNG CHO NEXTJS
+            # ĐÓN LÕNG CUỐI CÙNG CHO NEXTJS UI
             - id: nextjs
               uri: http://storefront-ui:3000
               predicates:
