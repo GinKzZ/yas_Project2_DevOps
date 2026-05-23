@@ -6,6 +6,47 @@ spring:
           default-filters:
             - SaveSession
           routes:
+            - id: product
+              uri: http://product
+              predicates:
+                - Path=/api/product/**
+              filters:
+                - StripPrefix=1
+            - id: cart
+              uri: http://cart
+              predicates:
+                - Path=/api/cart/**
+            - id: customer
+              uri: http://customer
+              predicates:
+                - Path=/api/customer/**
+            - id: order
+              uri: http://order
+              predicates:
+                - Path=/api/order/**
+            - id: inventory
+              uri: http://inventory
+              predicates:
+                - Path=/api/inventory/**
+            - id: media
+              uri: http://media
+              predicates:
+                - Path=/api/media/**
+            - id: search
+              uri: http://search
+              predicates:
+                - Path=/api/search/**
+            - id: tax
+              uri: http://tax
+              predicates:
+                - Path=/api/tax/**
+            - id: promotion
+              uri: http://promotion
+              predicates:
+                - Path=/api/promotion/**
+                
+              filters:
+                - StripPrefix=1
             - id: api
               uri: http://nginx
               predicates:
