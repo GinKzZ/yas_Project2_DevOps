@@ -15,8 +15,8 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-  sidecar.istio.io/inject: "true"                  # BẬT LẠI SIDECAR ĐỂ LÊN ĐẸP ĐỘI HÌNH 2/2
-  sidecar.istio.io/rewriteAppHTTPProbers: "false"  # Ép Istio không chặn đường kiểm tra sức khỏe
+  sidecar.istio.io/inject: "true"
+  sidecar.istio.io/rewriteAppHTTPProbes: "true"
 
 podSecurityContext: {}
 
