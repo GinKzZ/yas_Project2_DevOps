@@ -1,7 +1,7 @@
 backend:
   image:
     repository: 23127206/yas-all-in-one
-    tag: latest
+    tag: "9766c218"
     pullPolicy: Always
 
   service:

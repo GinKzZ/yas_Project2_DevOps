@@ -1,7 +1,7 @@
 backend:
   image:
     repository: 23127206/yas-all-in-one
-    tag: latest
+    tag: "latest"
     pullPolicy: Always
   service:
     type: NodePort
