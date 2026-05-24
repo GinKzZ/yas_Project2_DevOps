@@ -102,8 +102,6 @@ backend:
       value: "http://media:80"
     - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI
       value: "http://yas.local.com:30016/realms/Yas"
-    - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_AUTHORIZATION_URI
-      value: "http://yas.local.com:30016/realms/Yas/protocol/openid-connect/auth"
     - name: SPRING_APPLICATION_JSON
       value: '{"management":{"endpoints":{"web":{"exposure":{"include":"health,info,prometheus"}}}}}'
 
