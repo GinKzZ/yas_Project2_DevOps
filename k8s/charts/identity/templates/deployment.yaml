@@ -39,14 +39,20 @@ spec:
               value: "true"
             - name: KC_METRICS_ENABLED
               value: "true"
-          # Tăng thời gian chờ vì Keycloak khởi động rất lâu
+            - name: KC_BOOTSTRAP_ADMIN_USERNAME
+              value: "admin"
+            - name: KC_BOOTSTRAP_ADMIN_PASSWORD
+              value: "admin"
+            {{- if .Values.extraEnvVars }}
+            {{- toYaml .Values.extraEnvVars | nindent 12 }}
+            {{- end }}
           livenessProbe:
-            httpGet:
-              path: /health/live
+            tcpSocket:
               port: 8080
-            initialDelaySeconds: 300
+            initialDelaySeconds: 60
+            periodSeconds: 10
           readinessProbe:
-            httpGet:
-              path: /health/ready
+            tcpSocket:
               port: 8080
-            initialDelaySeconds: 300
+            initialDelaySeconds: 60
+            periodSeconds: 10
