@@ -1,23 +1,4 @@
 spring:
-  application:
-    name: storefront-bff
-
-  # PHẦN 1: BẢO MẬT (DÙNG CỔNG 80 MẶC ĐỊNH CỦA SERVICE)
-  security:
-    oauth2:
-      client:
-        provider:
-          keycloak:
-            issuer-uri: http://identity/realms/Yas
-            authorization-uri: http://identity/realms/Yas/protocol/openid-connect/auth
-            token-uri: http://identity/realms/Yas/protocol/openid-connect/token
-            user-info-uri: http://identity/realms/Yas/protocol/openid-connect/userinfo
-            jwk-set-uri: http://identity/realms/Yas/protocol/openid-connect/certs
-      resourceserver:
-        jwt:
-          issuer-uri: http://identity/realms/Yas
-
-  # PHẦN 2: PHÂN LUỒNG MẠNG GATEWAY (ĐÃ SỬA STRIPPREFIX)
   cloud:
     gateway:
       server:
@@ -25,63 +6,15 @@ spring:
           default-filters:
             - SaveSession
           routes:
-            - id: product
-              uri: http://product
+            - id: api
+              uri: http://nginx
               predicates:
-                - Path=/api/product/**
+                - Path=/api/**
               filters:
+                - DedupeResponseHeader=Origin Access-Control-Request-Method Access-Control-Request-Headers
+                - TokenRelay=
                 - StripPrefix=1
-            - id: cart
-              uri: http://cart
-              predicates:
-                - Path=/api/cart/**
-              filters:
-                - StripPrefix=1
-            - id: customer
-              uri: http://customer
-              predicates:
-                - Path=/api/customer/**
-              filters:
-                - StripPrefix=1
-            - id: order
-              uri: http://order
-              predicates:
-                - Path=/api/order/**
-              filters:
-                - StripPrefix=1
-            - id: inventory
-              uri: http://inventory
-              predicates:
-                - Path=/api/inventory/**
-              filters:
-                - StripPrefix=1
-            - id: media
-              uri: http://media
-              predicates:
-                - Path=/api/media/**
-              filters:
-                - StripPrefix=1
-            - id: search
-              uri: http://search
-              predicates:
-                - Path=/api/search/**
-              filters:
-                - StripPrefix=1
-            - id: tax
-              uri: http://tax
-              predicates:
-                - Path=/api/tax/**
-              filters:
-                - StripPrefix=1
-            - id: promotion
-              uri: http://promotion
-              predicates:
-                - Path=/api/promotion/**
-              filters:
-                - StripPrefix=1
-                
-            #  CATCH-ALL ĐƯỢC ĐẨY XUỐNG CUỐI CÙNG CHO NEXTJS UI
             - id: nextjs
-              uri: http://storefront-ui:3000
+              uri: http://storefront-nextjs:3000
               predicates:
                 - Path=/**
