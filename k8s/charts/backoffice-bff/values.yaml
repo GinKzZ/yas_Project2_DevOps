@@ -61,8 +61,8 @@ backend:
       value: "http://identity:80/realms/Yas"
     - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI
       value: "http://identity:80/realms/Yas/protocol/openid-connect/certs"
-    - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
-      value: "http://identity:80/realms/Yas"    
+    - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI
+      value: "http://identity:80/realms/Yas"   
     - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_AUTHORIZATION_URI
       value: "http://yas.local.com:30016/realms/Yas/protocol/openid-connect/auth"
     - name: SERVER_FORWARD_HEADERS_STRATEGY
