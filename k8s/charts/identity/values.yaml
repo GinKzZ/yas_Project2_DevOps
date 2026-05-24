@@ -11,3 +11,5 @@ extraEnvVars:
     value: "admin"
   - name: KEYCLOAK_ADMIN_PASSWORD
     value: "admin"
+postgresql:
+  enabled: false
