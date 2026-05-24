@@ -10,8 +10,8 @@ backend:
     targetPort: 8080
     nodePort: 30011
 
-  podAnnotations:    
-    proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
+  # podAnnotations:    
+  #   proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
 
   livenessProbe:
     initialDelaySeconds: 120
